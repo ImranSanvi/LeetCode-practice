@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int canBeTypedWords(string text, string brokenLetters) {
+        int a[30] = {0};
+        for(int i=0; i<brokenLetters.size(); i++){
+            int pos = brokenLetters[i]-'0'-48;
+            a[pos] = 1;
+        }
+
+        int c = 0;
+        bool found = false;
+        for(int i=0; i<text.size(); i++){
+            if(text[i] == ' '){
+                if(!found){
+                    c++;
+                }
+                found = false;
+            }
+            else{
+                int p = text[i]-'0'-48;
+                if(a[p] == 1){
+                    found = true;
+                }
+            }
+        }
+        if(!found){
+            c++;
+        }
+        return c;
+    }
+};
